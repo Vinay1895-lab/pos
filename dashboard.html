@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>POS Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/610f2adb-53c3-4cac-a577-209e70d984cb/dh4qmlm-0334273a-2e1f-4ee0-b5df-af058df7d521.png') 
+        no-repeat center center fixed;
+      background-size: cover;
+      padding: 80px;
+    }
+
+    h1 {
+      text-align: center;
+      color: SkyBlue;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 5px #000;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 90px;
+    }
+
+    .box {
+      background: rgba(164, 164, 164, 0.9);
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      height: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .box:hover {
+      transform: translateY(-10px);
+    }
+
+    .box img {
+      max-width: 100%;
+      height: 150px;
+      margin-bottom: 20px;
+    }
+
+    .box h3 {
+      color: #333;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Restaurant POS Dashboard</h1>
+
+  <div class="container">
+    <div class="box" onclick="location.href='register.html'">
+      <img src="https://cdn-icons-png.flaticon.com/512/9131/9131478.png" alt="Register">
+      <h3>Register</h3>
+    </div>
+
+    <div class="box" onclick="location.href='store.html'">
+      <img src="https://cdn.iconscout.com/icon/free/png-256/free-market-icon-download-in-svg-png-gif-file-formats--shop-store-shopping-and-retail-pack-e-commerce-icons-910307.png" alt="Store">
+      <h3>Store</h3>
+    </div>
+
+    <div class="box" onclick="location.href='menu.html'">
+      <img src="https://i0.wp.com/macromanmeals.com/wp-content/uploads/2022/06/noun-food-menu-1294176-1F9549.png?fit=512%2C512" alt="Menu">
+      <h3>Menu</h3>
+    </div>
+
+    <div class="box" onclick="location.href='customers.html'">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/User-customer.svg" alt="Customers">
+      <h3>Customers</h3>
+    </div>
+
+    <div class="box" onclick="location.href='POS.html'">
+      <img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="Users">
+      <h3>POS</h3>
+    </div>
+
+    <div class="box" onclick="location.href='reports.html'">
+      <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png" alt="Reports">
+      <h3>Reports</h3>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Restaurant POS Registration</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: url(https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+      margin: 0;
+      padding: 0px;
+    }
+    h1 {
+      text-align: center;
+      color: #fcfcfc;
+    }
+    form {
+      max-width: 800px;
+      margin: auto;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+      color: #333;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    .phone-container {
+      display: flex;
+      align-items: center;
+    }
+    .phone-container span {
+      margin-right: 10px;
+      font-size: 18px;
+    }
+    .submit-btn {
+      margin-top: 20px;
+      width: 100%;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .submit-btn:hover {
+      background-color: #0056b3;
+    }
+    .address-section {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 15px;
+      margin-bottom: 15px;
+      background: #fafafa;
+    }
+    .password-meter {
+      height: 5px;
+      width: 100%;
+      background: #eee;
+      border-radius: 5px;
+      margin-top: 5px;
+    }
+    .password-meter-fill {
+      height: 100%;
+      width: 0;
+      border-radius: 5px;
+    }
+    .info {
+      font-size: 12px;
+      color: #888;
+    }
+    .checkbox-align {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+    }
+    .checkbox-align input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Register New User</h1>
+  <form id="registration-form">
+
+    <div style="display: flex; justify-content:center ; margin-bottom: 0px;">
+      <div style="border: 1px solid #ccc; padding: 10px; width: 160px; text-align: center; background: #f9f9f9;">
+        <p style="margin-bottom: 5px;"><strong>Photo</strong></p>
+        <div style="width: 120px; height: 160px; margin: auto; background: #eaeaea; border: 1px solid #aaa;">
+          <img id="passport-photo" src="" alt="Upload Photo" style="width: 100%; height: 100%; object-fit: cover;" />
+        </div>
+        <button type="button" onclick="openCamera()" style="margin-top: 10px;">Capture</button>
+      </div>
+    </div>
+
+    <label for="fullname">Full Name *</label>
+    <input type="text" id="fullname" name="fullname" required />
+
+    <label for="email">Email Address *</label>
+    <input type="email" id="email" name="email" required pattern="^[^@\s]+@[^@\s]+\.(com|in)$" title="Must be a valid .com or .in email" />
+
+  <label for="phone">Mobile Number *</label>
+<div class="phone-container">
+  <span>🇮🇳 +91</span>
+  <input 
+    type="text" 
+    id="phone" 
+    name="phone" 
+    maxlength="10" 
+    pattern="\d{10}" 
+    required 
+    oninput="this.value = this.value.replace(/\D/g, '')"
+    oninvalid="this.setCustomValidity('Please enter correct mobile no')"
+    oninput="this.setCustomValidity('')"
+  />
+</div>
+
+    <label for="current-address">Current Address</label>
+    <div class="address-section">
+      <input type="text" placeholder="Address Line 1" required />
+      <input type="text" placeholder="Address Line 2" />
+      <input type="text" placeholder="Postal Code" required />
+      <input type="text" placeholder="City" required />
+      <input type="text" placeholder="State" required />
+      <input type="text" value="India" readonly />
+    </div>
+
+    <div class="checkbox-align">
+      <input type="checkbox" id="sameAddress" />
+      <label for="sameAddress">Permanent address same as current address</label>
+    </div>
+
+    <label for="permanent-address">Permanent Address</label>
+    <div class="address-section" id="permanent-address">
+      <input type="text" placeholder="Address Line 1" required />
+      <input type="text" placeholder="Address Line 2" />
+      <input type="text" placeholder="Postal Code" required />
+      <input type="text" placeholder="City" required />
+      <input type="text" placeholder="State" required />
+      <input type="text" value="India" readonly />
+    </div>
+
+    <label for="role">Role *</label>
+    <select id="role" name="role" required>
+      <option value="">-- Select Role --</option>
+      <option value="admin">Admin</option>
+      <option value="cashier">Cashier</option>
+      <option value="chef">Chef</option>
+      <option value="waiter">Waiter</option>
+    </select>
+
+    <label for="identity">Select Identity Proof</label>
+    <select id="identity" name="identity" required>
+      <option value="">-- Select --</option>
+      <option value="Aadhar Card">Aadhar Card</option>
+      <option value="PAN Card">PAN Card</option>
+      <option value="Passport">Passport</option>
+      <option value="Driving License">Driving License</option>
+    </select>
+
+    <div id="identity-details-container" style="display: none;">
+      <label id="identity-label"></label>
+      <input type="text" id="identity-details" required />
+      <label for="id-upload">Upload Proof (Max 5MB: JPG, JPEG, PNG, PDF)</label>
+      <input type="file" id="id-upload" name="id-upload" accept=".jpg,.jpeg,.png,.pdf" required />
+    </div>
+
+    <label for="userid">User ID *</label>
+    <input type="text" id="userid" name="userid" required />
+
+    <label for="password">Password *</label>
+    <input type="password" id="password" name="password" required 
+      pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}"
+      title="At least 1 uppercase, 1 lowercase, 1 number, 1 special character. Min 8 characters." />
+    <div class="password-meter" id="meter">
+      <div class="password-meter-fill" id="meter-fill"></div>
+    </div>
+    <div class="info">Password must be strong and secure</div>
+
+    <label for="confirm-password">Confirm Password *</label>
+    <input type="password" id="confirm-password" name="confirm-password" required />
+
+    <div class="checkbox-align">
+      <input type="checkbox" required />
+      <label>I agree to the terms and conditions *</label>
+    </div>
+
+    <button type="submit" class="submit-btn">Register</button>
+
+    <!-- Modal for camera -->
+    <div id="cameraModal" style="display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); align-items: center; justify-content: center;">
+      <div style="background: white; padding: 20px; border-radius: 10px; display: flex; gap: 20px;">
+        <div>
+          <p><strong>Live Camera</strong></p>
+          <video id="camera" autoplay playsinline width="240" height="320" style="border: 1px solid #aaa;"></video>
+        </div>
+        <div>
+          <p><strong>Captured Photo</strong></p>
+          <canvas id="snapshot" width="120" height="160" style="border: 1px solid #aaa;"></canvas>
+        </div>
+        <div style="display: flex; flex-direction: column; justify-content: space-between;">
+          <button onclick="capturePhoto()">Capture</button>
+          <button onclick="clearPhoto()">Clear</button>
+          <button onclick="confirmPhoto()">Confirm</button>
+          <button onclick="closeCamera()">Close</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <h2 style="text-align: center; margin-top: 40px;">Registered Users</h2>
+  <table id="userTable" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <thead style="background: #007bff; color: white;">
+      <tr>
+        <th>Name</th>
+        <th>Email ID</th>
+        <th>Mobile Number</th>
+        <th>Current Address</th>
+        <th>Permanent Address</th>
+        <th>Role</th>
+        <th>User ID</th>
+        <th>Password</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <div style="text-align:center;">
+    <button id="update-btn" type="button" class="submit-btn" style="display: none;">Update</button>
+    <button id="export-btn" type="button" class="submit-btn" style="background-color: #28a745; margin-top: 10px; width: 200px; font-weight:bold;">Export to Excel</button>
+  </div>
+
+  <script>
+    const cameraModal = document.getElementById("cameraModal");
+    const video = document.getElementById("camera");
+    const canvas = document.getElementById("snapshot");
+    const ctx = canvas.getContext("2d");
+    const passportPhoto = document.getElementById("passport-photo");
+    let stream;
+
+    function openCamera() {
+      navigator.mediaDevices.getUserMedia({ video: true }).then(s => {
+        stream = s;
+        video.srcObject = stream;
+        cameraModal.style.display = "flex";
+      });
+    }
+
+    function capturePhoto() {
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    }
+
+    function clearPhoto() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function confirmPhoto() {
+      const dataUrl = canvas.toDataURL("image/jpeg");
+      passportPhoto.src = dataUrl;
+      closeCamera();
+    }
+
+    function closeCamera() {
+      cameraModal.style.display = "none";
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+      }
+    }
+
+    const identity = document.getElementById("identity");
+    const identityDetailsContainer = document.getElementById("identity-details-container");
+    const identityLabel = document.getElementById("identity-label");
+    const identityDetails = document.getElementById("identity-details");
+
+    identity.addEventListener("change", () => {
+      if (identity.value) {
+        identityDetailsContainer.style.display = "block";
+        identityLabel.textContent = identity.value + " Details";
+        identityDetails.placeholder = identity.value + " Details";
+      } else {
+        identityDetailsContainer.style.display = "none";
+        identityDetails.value = "";
+      }
+    });
+
+    const passwordInput = document.getElementById("password");
+    const meterFill = document.getElementById("meter-fill");
+
+    passwordInput.addEventListener("input", () => {
+      const val = passwordInput.value;
+      let strength = 0;
+      if (val.match(/[a-z]/)) strength += 1;
+      if (val.match(/[A-Z]/)) strength += 1;
+      if (val.match(/[0-9]/)) strength += 1;
+      if (val.match(/[@$!%*#?&]/)) strength += 1;
+      if (val.length >= 8) strength += 1;
+
+      const colors = ["red", "orange", "gold", "#66cc66", "green"];
+      meterFill.style.width = (strength * 20) + "%";
+      meterFill.style.backgroundColor = colors[strength - 1] || "red";
+    });
+
+    const sameAddressCheckbox = document.getElementById("sameAddress");
+    sameAddressCheckbox.addEventListener("change", () => {
+      const currentInputs = document.querySelectorAll(".address-section")[0].querySelectorAll("input");
+      const permanentInputs = document.querySelectorAll(".address-section")[1].querySelectorAll("input");
+      if (sameAddressCheckbox.checked) {
+        for (let i = 0; i < permanentInputs.length - 1; i++) {
+          permanentInputs[i].value = currentInputs[i].value;
+        }
+      } else {
+        for (let i = 0; i < permanentInputs.length - 1; i++) {
+          permanentInputs[i].value = "";
+        }
+      }
+    });
+
+    const form = document.getElementById("registration-form");
+    const table = document.getElementById("userTable").querySelector("tbody");
+    const updateBtn = document.getElementById("update-btn");
+    const exportBtn = document.getElementById("export-btn");
+    let editIndex = null;
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const data = getFormData();
+      if (!data) return;
+      addTableRow(data);
+      form.reset();
+      document.getElementById("passport-photo").src = "";
+    });
+
+    updateBtn.addEventListener("click", function () {
+      if (editIndex !== null) {
+        const data = getFormData();
+        if (!data) return;
+        updateTableRow(editIndex, data);
+        editIndex = null;
+        updateBtn.style.display = "none";
+        form.reset();
+      }
+    });
+
+    exportBtn.addEventListener("click", function () {
+      const rows = [["Name", "Email ID", "Mobile Number", "Current Address", "Permanent Address", "Role", "User ID", "Password"]];
+      Array.from(table.rows).forEach(row => {
+        const values = Array.from(row.cells).slice(0, 8).map(cell => cell.textContent);
+        rows.push(values);
+      });
+
+      let csv = rows.map(r => r.join(",")).join("\n");
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "registered_users.csv";
+      a.click();
+    });
+
+    function getFormData() {
+      const getInputValue = (selector) => form.querySelector(selector)?.value.trim();
+      const getAddress = (sectionIndex) => {
+        const section = form.querySelectorAll(".address-section")[sectionIndex];
+        const inputs = section.querySelectorAll("input");
+        return Array.from(inputs).slice(0, 5).map(input => input.value).join(", ");
+      };
+
+      const name = getInputValue("#fullname");
+      const email = getInputValue("#email");
+      const phone = getInputValue("#phone");
+      const currentAddress = getAddress(0);
+      const permanentAddress = getAddress(1);
+      const role = getInputValue("#role");
+      const userId = getInputValue("#userid");
+      const password = getInputValue("#password");
+      if (!name || !email || !phone || !role || !userId || !password) {
+        alert("Please fill all required fields.");
+        return null;
+      }
+
+      return { name, email, phone, currentAddress, permanentAddress, role, userId, password };
+    }
+
+    function addTableRow(data) {
+      const row = table.insertRow();
+      Object.values(data).forEach(value => {
+        const cell = row.insertCell();
+        cell.textContent = value;
+      });
+      const actionCell = row.insertCell();
+      actionCell.innerHTML = '<button onclick="editRow(this)">Edit</button>';
+    }
+
+    function updateTableRow(index, data) {
+      const row = table.rows[index];
+      Object.values(data).forEach((value, i) => {
+        row.cells[i].textContent = value;
+      });
+    }
+
+    function editRow(button) {
+      const row = button.parentElement.parentElement;
+      editIndex = row.rowIndex - 1;
+      const cells = row.cells;
+      form.querySelector("#fullname").value = cells[0].textContent;
+      form.querySelector("#email").value = cells[1].textContent;
+      form.querySelector("#phone").value = cells[2].textContent;
+      form.querySelector("#role").value = cells[5].textContent;
+      form.querySelector("#userid").value = cells[6].textContent;
+      form.querySelector("#password").value = cells[7].textContent;
+      updateBtn.style.display = "inline-block";
+    }
+  </script>
+</body>
+</html>

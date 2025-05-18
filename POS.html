@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Restaurant POS</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <aside>
+      <h2 id="storeName">🍽️ POS System</h2>
+      <nav>
+        <a href="#">Menu</a>
+        <a href="#">Orders</a>
+        <a href="#">History</a>
+        <a href="#">Bills</a>
+        <a href="#">Settings</a>
+        <a href="#">Help</a>
+        <a href="#">Logout</a>
+      </nav>
+      <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+    </aside>
+
+    <main>
+      <header>
+        <h1>Menu</h1>
+        <input type="text" id="searchInput" placeholder="Search menu..." />
+      </header>
+      <div class="flex">
+        <section class="menu-grid" id="menuGrid">
+          <!-- Items populated dynamically -->
+        </section>
+
+        <aside class="order-panel">
+          <h3>🛒 Order Summary</h3>
+          <div id="cartItems"></div>
+          <hr />
+          <p>Subtotal: ₹<span id="subtotal">0.00</span></p>
+          <p>Tax (5%): ₹<span id="tax">0.00</span></p>
+          <p>Total: ₹<strong id="total">0.00</strong></p>
+          <button id="printBtn">🖨️ Print</button>
+          <button id="fireOrderBtn">🔥 Fire Order</button>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
